@@ -14,4 +14,11 @@ class PostsController extends Controller
     	    'discussions' => $discussions
         ]);
     }
+
+    public function show(Discussion $discussion)
+    {
+        return view('forum.show', [
+            'discussion' => $discussion
+        ]);
+    }
 }
