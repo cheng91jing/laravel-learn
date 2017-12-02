@@ -15,3 +15,6 @@ Route::get('/', 'PostsController@index');
 Route::resource('discussions', 'PostsController');
 
 Auth::routes();
+
+Route::get('signup/confirm/{confirm_code}', 'UsersController@confirmEmail')->name('confirm_email');
+

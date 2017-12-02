@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar'
+        'name', 'email', 'password', 'avatar', 'email_confirm_code'
     ];
 
     /**
@@ -26,6 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        static::creating(function ($user){
+            $user->email_confirm_code = str_random(48);
+        });
+    }
 
     public function discussions()
     {

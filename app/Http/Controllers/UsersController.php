@@ -82,4 +82,16 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function confirmEmail($confirm_code)
+    {
+        $user = User::where('email_confirm_code', $confirm_code)->firstOrFail();
+        $user->is_confirmed = true;
+        $user->email_confirm_code = null;
+        $user->save();
+
+        \Auth::login($user);
+        session()->flash('success', '恭喜你，激活成功！');
+        return redirect('/');
+    }
 }
