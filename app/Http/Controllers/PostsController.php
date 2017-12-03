@@ -47,6 +47,20 @@ class PostsController extends Controller
         return redirect()->route('discussions.show', ['discussion' => $discussion->id]);
     }
 
+    public function edit(Discussion $discussion)
+    {
+        if(Auth::id() != $discussion->user_id) return redirect('/');
+        return view('forum.edit', compact('discussion'));
+    }
+
+    public function update(Request $request, Discussion $discussion)
+    {
+        if(Auth::id() != $discussion->user_id) return redirect('/');
+        $this->validate($request, $this->getStoreRule());
+        $discussion->update($request->all());
+        return redirect()->route('discussions.show', ['discussion' => $discussion->id]);
+    }
+
     protected function getStoreRule()
     {
         return [

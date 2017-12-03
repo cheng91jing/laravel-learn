@@ -12,7 +12,9 @@
                 <div class="media-body">
                     <h4 class="media-heading">
                         {{ $discussion->title }}
-                        <a class="btn btn-primary btn-lg pull-right" href="#" role="button">修改帖子</a>
+                        @if($discussion->user_id == Auth::id())
+                        <a class="btn btn-primary btn-lg pull-right" href="{{ route('discussions.edit', ['discussion' => $discussion->id]) }}" role="button">修改帖子</a>
+                        @endif
                     </h4>
                     {{ $discussion->user->name }}
                 </div>
