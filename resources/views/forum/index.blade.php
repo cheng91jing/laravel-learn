@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron">
         <div class="container">
-            <h2>欢迎来到Chen的 <strong><em>Laravel</em></strong> 学习空间! <a class="btn btn-primary btn-lg pull-right" href="#" role="button">发布新的帖子</a></h2>
+            <h2>欢迎来到Chen的 <strong><em>Laravel</em></strong> 学习空间! <a class="btn btn-primary btn-lg pull-right" href="{{ route('discussions.create') }}" role="button">发布新的帖子</a></h2>
         </div>
     </div>
     <div class="container">
