@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="https://use.fontawesome.com/df86edc4ae.js"></script>
 </head>
 <body style="padding-top: 70px;">
     <div id="app">
@@ -64,21 +65,25 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
                                 <ul class="dropdown-menu">
+                                    <li><a href="/user/avatar"><i class="fa fa-user"></i> 更换头像</a></li>
+                                    <li><a href="#"><i class="fa fa-cog"></i> 更换密码</a></li>
+                                    <li><a href="#"><i class="fa fa-heart"></i> 更换密码</a></li>
+                                    <li role="separator" class="divider"></li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                            <i class="fa fa-sign-out"></i>
                                             退 出
                                         </a>
-
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
                                     </li>
                                 </ul>
                             </li>
+                            <li><img src="{{ Auth::user()->avatar }}" class="img-circle" width="50" alt=""></li>
                         @endguest
                     </ul>
                 </div>

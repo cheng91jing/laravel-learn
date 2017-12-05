@@ -19,3 +19,5 @@ Auth::routes();
 
 Route::get('signup/confirm/{confirm_code}', 'UsersController@confirmEmail')->name('confirm_email');
 
+Route::get('user/avatar', 'UsersController@avatar');
+Route::post('avatar', 'UsersController@changeAvatar');

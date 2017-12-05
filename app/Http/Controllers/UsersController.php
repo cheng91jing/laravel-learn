@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
+use Storage;
+use Image;
 
 class UsersController extends Controller
 {
@@ -93,5 +96,25 @@ class UsersController extends Controller
         \Auth::login($user);
         session()->flash('success', '恭喜你，激活成功！');
         return redirect('/');
+    }
+
+    public function avatar()
+    {
+        return view('users.avatar');
+    }
+
+    public function changeAvatar(Request $request)
+    {
+//        $file = $request->file('avatar');
+//        $destinationPath = 'uploads/';
+//        $filename = Auth::id() . '_' . time() . $file->getClientOriginalName();
+//        $file->move($destinationPath, $filename);
+//        $user->avatar = $destinationPath . $filename;
+        $filePath = $request->file('avatar')->store('avatars', 'public');
+        Image::make('storage/'.$filePath)->fit(200)->save();
+        $user = User::find(Auth::id());
+        $user->avatar = Storage::url($filePath);
+        $user->save();
+        return redirect('/user/avatar');
     }
 }
