@@ -111,7 +111,7 @@ class UsersController extends Controller
 //        $file->move($destinationPath, $filename);
 //        $user->avatar = $destinationPath . $filename;
         $filePath = $request->file('avatar')->store('avatars', 'public');
-        Image::make('storage/'.$filePath)->fit(200)->save();
+        Image::make(Storage::disk('public')->path($filePath))->fit(200)->save();
         $user = User::find(Auth::id());
         $user->avatar = Storage::url($filePath);
         $user->save();
