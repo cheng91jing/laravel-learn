@@ -22,3 +22,5 @@ Route::get('signup/confirm/{confirm_code}', 'UsersController@confirmEmail')->nam
 Route::get('user/avatar', 'UsersController@avatar');
 Route::post('avatar', 'UsersController@changeAvatar');
 Route::post('/crop/api', 'UsersController@cropAvatar');
+
+Route::post('/post/upload', 'PostsController@upload');

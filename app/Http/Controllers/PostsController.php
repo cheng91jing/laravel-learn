@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Discussion;
 use Auth;
 use Illuminate\Http\Request;
+use EndaEditor;
 
 class PostsController extends Controller
 {
@@ -25,8 +26,10 @@ class PostsController extends Controller
 
     public function show(Discussion $discussion)
     {
+
         return view('forum.show', [
-            'discussion' => $discussion
+            'discussion' => $discussion,
+            'markdown_html' => EndaEditor::MarkDecode($discussion->body)
         ]);
     }
 
@@ -59,6 +62,12 @@ class PostsController extends Controller
         $this->validate($request, $this->getStoreRule());
         $discussion->update($request->all());
         return redirect()->route('discussions.show', ['discussion' => $discussion->id]);
+    }
+
+    public function upload()
+    {
+        $data = EndaEditor::uploadImgFile('upload');
+        return json_encode($data);
     }
 
     protected function getStoreRule()

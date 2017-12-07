@@ -1,3 +1,4 @@
+@include('editor::head')
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
     {!! Form::label('title', '标题', ['class' => 'col-md-3 control-label']) !!}
     <div class="col-md-6">
@@ -11,8 +12,8 @@
 </div>
 <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
     {!! Form::label('body', '内容', ['class' => 'col-md-3 control-label']) !!}
-    <div class="col-md-6">
-        {!! Form::textarea('body', old('body'), ['class' => 'form-control', 'required' => true]) !!}
+    <div class="col-md-6 editor">
+        {!! Form::textarea('body', old('body'), ['class' => 'form-control', 'required' => true, 'id' => 'myEditor']) !!}
         @if ($errors->has('body'))
             <span class="help-block">
                 <strong>{{ $errors->first('body') }}</strong>
