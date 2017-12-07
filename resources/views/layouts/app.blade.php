@@ -15,6 +15,7 @@
     <script src="https://use.fontawesome.com/df86edc4ae.js"></script>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/jquery.form.js') }}"></script>
 </head>
 <body style="padding-top: 70px;">
     <div id="app">

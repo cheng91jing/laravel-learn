@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Str;
 use Storage;
 use Image;
 use Response;
@@ -47,14 +48,28 @@ class UsersController extends Controller
 
         $filePath = $request->file('avatar')->store('avatars', 'public');
         Image::make(Storage::disk('public')->path($filePath))->fit(200)->save();
-        $user = User::find(Auth::id());
-        $user->avatar = Storage::url($filePath);
-        $user->save();
 
         return Response::json([
             'success' => true,
-            'avatar' => asset($user->avatar),
+            'avatar' => Storage::url($filePath),
         ]);
 //        return redirect('/user/avatar');
+    }
+
+    public function cropAvatar(Request $request)
+    {
+        $photo = $request->photo;
+        $w = (integer) $request->w;
+        $h = (integer) $request->h;
+        $x = (integer) $request->x;
+        $y = (integer) $request->y;
+        $file_path = Str::after($photo, '/storage/');
+        Image::make(Storage::disk('public')->path($file_path))->crop($w, $h, $x, $y)->save();
+
+        $user = Auth::user();
+        $user->avatar = Storage::url($file_path);
+        $user->save();
+
+        return redirect('user/avatar');
     }
 }
