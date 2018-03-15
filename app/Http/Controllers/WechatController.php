@@ -20,16 +20,19 @@ class WechatController extends Controller
                 ],
                 'reservation_list' => [
                     [
+                        'reservation_id' => 1,
                         'head_img' => 'http://d.hiphotos.baidu.com/zhidao/pic/item/9f510fb30f2442a72aba3dd6d143ad4bd1130209.jpg',
                         'title' => '中秋活动',
                         'introduce'=> '中心仅打孔机埃里克我们的来玩么'
                     ],
                     [
+                        'reservation_id' => 2,
                         'head_img' => 'http://pic.qiantucdn.com/58pic/26/27/26/20s58PICaq9_1024.jpg',
                         'title' => '国庆活动',
                         'introduce'=> '阿卡丽手机端来卡上第六课按键失灵可叠加 卡阿卡丽结算的垃圾克鲁赛德'
                     ],
                     [
+                        'reservation_id' => 3,
                         'head_img' => 'http://img0.imgtn.bdimg.com/it/u=3562007865,867926767&fm=214&gp=0.jpg',
                         'title' => '元旦活动',
                         'introduce'=> '奥术大师大所大所多群翁自相残杀'
