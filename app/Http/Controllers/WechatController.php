@@ -51,13 +51,14 @@ class WechatController extends Controller
 
     public function detail(Request $request)
     {
+        $postData = $request->all();
         $result = [
             'error_code' => 0,
             'error_msg' => '',
-            'data' => null
+            'data' => null,
+            'request' => $postData
         ];
         try{
-            $postData = $request->all();
             if(empty($postData['reservation_id'])) throw new Exception('请求参数缺失，未获取到活动数据');
 
             $result['data'] = [
