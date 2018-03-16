@@ -36,6 +36,12 @@ class WechatController extends Controller
                         'head_img' => 'http://img0.imgtn.bdimg.com/it/u=3562007865,867926767&fm=214&gp=0.jpg',
                         'title' => '元旦活动',
                         'introduce'=> '奥术大师大所大所多群翁自相残杀'
+                    ],
+					[
+                        'reservation_id' => 4,
+                        'head_img' => 'http://img0.imgtn.bdimg.com/it/u=3562007865,867926767&fm=214&gp=0.jpg',
+                        'title' => '春节活动',
+                        'introduce'=> '爱上递交时单价哦啊目的骄傲is京东个案件死哦大家啊iOS大家啊'
                     ]
                 ]
             ]
