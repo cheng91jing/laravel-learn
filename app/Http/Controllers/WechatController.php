@@ -8,6 +8,7 @@ use Exception;
 
 class WechatController extends Controller
 {
+    //首页数据
     public function home()
     {
         return Response::json([
@@ -49,6 +50,7 @@ class WechatController extends Controller
         ]);
     }
 
+    //详情页数据
     public function detail(Request $request)
     {
         $postData = $request->all();
@@ -81,6 +83,7 @@ class WechatController extends Controller
         return Response::json($result);
     }
 
+    //提交申请
     public function form(Request $request)
     {
         $postData = $request->all();
@@ -92,6 +95,46 @@ class WechatController extends Controller
         ];
         try{
             if(empty($postData['reservation_id'])) throw new Exception('请求参数缺失，未获取到活动数据');
+
+        }catch (Exception $e){
+            $result['error_code'] = 1;
+            $result['error_msg'] = $e->getMessage();
+        }
+        return Response::json($result);
+    }
+
+    //验证手机号是否存在
+    public function verification(Request $request)
+    {
+        $postData = $request->all();
+        $result = [
+            'error_code' => 0,
+            'error_msg' => '',
+            'data' => null,
+            'request' => $postData
+        ];
+        try{
+            if(empty($postData['phone'])) throw new Exception('缺少必要的请求参数');
+
+        }catch (Exception $e){
+            $result['error_code'] = 1;
+            $result['error_msg'] = $e->getMessage();
+        }
+        return Response::json($result);
+    }
+
+    //发送验证码
+    public function sendCode(Request $request)
+    {
+        $postData = $request->all();
+        $result = [
+            'error_code' => 0,
+            'error_msg' => '',
+            'data' => null,
+            'request' => $postData
+        ];
+        try{
+            if(empty($postData['phone'])) throw new Exception('缺少必要的请求参数');
 
         }catch (Exception $e){
             $result['error_code'] = 1;
