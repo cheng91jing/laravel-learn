@@ -17,3 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/wechat_mini/home', 'WechatController@home');
+Route::post('/wechat_mini/detail', 'WechatController@detail');

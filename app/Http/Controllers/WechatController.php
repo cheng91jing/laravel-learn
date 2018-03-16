@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Response;
+use Exception;
 
 class WechatController extends Controller
 {
@@ -46,5 +47,34 @@ class WechatController extends Controller
                 ]
             ]
         ]);
+    }
+
+    public function detail(Request $request, $reservation_id)
+    {
+        $result = [
+            'error_code' => 0,
+            'error_msg' => '',
+            'data' => null
+        ];
+        try{
+
+            $result['data'] = [
+                'detail_id' => 1,
+                'body_image' => [
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809253976.jpg',
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809255818.jpg',
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809252186.jpg',
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809250713.jpg',
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809374534.jpg',
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809371964.jpg',
+                    'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809374954.jpg'
+                ],
+                'title' => '元宵节活动',
+            ];
+        }catch (Exception $e){
+            $result['error_code'] = 1;
+            $result['error_msg'] = $e->getMessage();
+        }
+        return Response::json($result);
     }
 }
