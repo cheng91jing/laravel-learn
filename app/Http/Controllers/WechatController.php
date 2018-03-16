@@ -80,4 +80,23 @@ class WechatController extends Controller
         }
         return Response::json($result);
     }
+
+    public function form(Request $request)
+    {
+        $postData = $request->all();
+        $result = [
+            'error_code' => 0,
+            'error_msg' => '',
+            'data' => null,
+            'request' => $postData
+        ];
+        try{
+            if(empty($postData['reservation_id'])) throw new Exception('请求参数缺失，未获取到活动数据');
+
+        }catch (Exception $e){
+            $result['error_code'] = 1;
+            $result['error_msg'] = $e->getMessage();
+        }
+        return Response::json($result);
+    }
 }
