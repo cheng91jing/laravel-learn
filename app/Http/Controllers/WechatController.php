@@ -49,7 +49,7 @@ class WechatController extends Controller
         ]);
     }
 
-    public function detail(Request $request, $reservation_id)
+    public function detail(Request $request)
     {
         $result = [
             'error_code' => 0,
@@ -57,9 +57,11 @@ class WechatController extends Controller
             'data' => null
         ];
         try{
+            $postData = $request->all();
+            if(empty($postData['reservation_id'])) throw new Exception('请求参数缺失，未获取到活动数据');
 
             $result['data'] = [
-                'detail_id' => 1,
+                'detail_id' => $postData['reservation_id'],
                 'body_image' => [
                     'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809253976.jpg',
                     'http://images.hngs.cn/shop/143/gallery/2018/01/23/15166809255818.jpg',
